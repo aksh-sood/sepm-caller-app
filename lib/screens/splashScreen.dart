@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:to_doc/utilities/constants.dart';
+import 'package:to_doc/utilities/pallete.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _SplashState extends State<Splash> {
     return Container(
       padding: EdgeInsets.all(kDefaultPadding),
       decoration: BoxDecoration(
-        color:kContentColorDarkTheme,
+        color:Palette.kContentColorDarkTheme,
       ),
       child: Center(
         child:Image.asset('images/logo.png') ,

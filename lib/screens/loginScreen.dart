@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_doc/utilities/pallete.dart';
 import 'package:to_doc/utilities/constants.dart';
 class LoginScreen extends StatefulWidget {
   @override
@@ -29,14 +30,14 @@ class _LoginScreenState extends State<LoginScreen> {
             TextField(
             scrollPadding: EdgeInsets.all(kDefaultPadding),
             style: TextStyle(
-                color: Colors.black
+                color: Palette.kBlack
             ),
             decoration: kInputPhoneDecoration,
         ),
       SizedBox(height: 20.0),
       TextField(
         style: TextStyle(
-              color: Colors.black
+              color: Palette.kBlack
         ),
         obscureText: _isObscure,
         decoration: InputDecoration(
@@ -44,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
             fillColor: Colors.white,
             hintText:"Enter Password",
             hintStyle: TextStyle(
-              color: kGrey,
+              color: Palette.kGrey,
             ),
             suffixIcon: IconButton(
                 icon: Icon(

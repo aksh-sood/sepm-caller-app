@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
-
-//Colors
-const kPrimaryColor = Color(0xFF0D47A1);
-const kSecondaryColor = Color(0xFF2196F3);
-const kContentColorDarkThemeColor = Color(0xFF1D1D35);
-const kContentColorDarkTheme = Color(0xFFFFFFF4);
-const kErrorColor = Color(0xFFF03738);
-const kBlack = Color(0xDD000000);
-const kGrey = Color(0xFF9E9E9E);
+import 'package:to_doc/utilities/pallete.dart';
 //Padding
 const kDefaultPadding = 20.0;
 const kDefaultButtonPadding = 8.0;
@@ -18,7 +10,7 @@ const kInputPhoneDecoration = InputDecoration(
     fillColor: Colors.white,
     hintText:"Enter Phone/Email",
     hintStyle: TextStyle(
-      color: kGrey,
+      color: Palette.kGrey,
     ),
     border:OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -29,7 +21,7 @@ const kInputPhoneDecoration = InputDecoration(
 //Text Style
 const kMessageTextStyle = TextStyle(
   fontSize: 58.0,
-  color: kPrimaryColor
+  color: Palette.kPrimaryColor
 );
 
 const kButtonTextStyle = TextStyle(
