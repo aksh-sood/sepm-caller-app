@@ -25,22 +25,10 @@ const kInputPhoneDecoration = InputDecoration(
         borderSide: BorderSide.none
     )
 );
-const kInputPasswordDecoration = InputDecoration(
-    filled: true,
-    fillColor: Colors.white,
-    hintText:"Enter Password",
-    hintStyle: TextStyle(
-      color: kGrey,
-    ),
-    border:OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-        borderSide: BorderSide.none
-    )
-);
 
 //Text Style
 const kMessageTextStyle = TextStyle(
-  fontSize: 18.0,
+  fontSize: 58.0,
   color: kPrimaryColor
 );
 
