@@ -40,7 +40,8 @@ const kInputPasswordDecoration = InputDecoration(
 
 //Text Style
 const kMessageTextStyle = TextStyle(
-  fontSize: 60.0,
+  fontSize: 18.0,
+  color: kPrimaryColor
 );
 
 const kButtonTextStyle = TextStyle(
