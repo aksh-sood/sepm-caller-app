@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:to_doc/utilities/constants.dart';
-import 'package:to_doc/utilities/pallete.dart';
+import 'package:to_doc_patient/utilities/constants.dart';
+import 'package:to_doc_patient/utilities/pallete.dart';
 
 class Splash extends StatefulWidget {
   @override
