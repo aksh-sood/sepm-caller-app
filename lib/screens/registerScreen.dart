@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:to_doc/utilities/pallete.dart';
 import 'package:to_doc/utilities/constants.dart';
 
 class RegisterScreen extends StatefulWidget {
