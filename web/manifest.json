@@ -1,11 +1,11 @@
 {
-    "name": "to_doc",
-    "short_name": "to_doc",
+    "name": "to_doc_patient",
+    "short_name": "to_doc_patient",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter application.",
+    "description": "This app can be used to book an appointment from doctor.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
