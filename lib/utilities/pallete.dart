@@ -38,7 +38,7 @@ class Palette {
   static const kPrimaryColor = Color(0xFF0071BC);
   static const kSecondaryColor = Color(0xFF2196F3);
   static const kContentColorDarkThemeColor = Color(0xFF1D1D35);
-  static const kContentColorDarkTheme = Color(0xFFFFFFF4);
+  static const kWhite = Color(0xFFFFFFF4);
   static const kErrorColor = Color(0xFFF03738);
   static const kBlack = Color(0xDD000000);
   static const kGrey = Color(0xFF9E9E9E);

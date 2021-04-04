@@ -8,6 +8,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _isObscure = true;
+  String phoneOrEmail;
+  String password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,24 +31,33 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
             TextField(
             scrollPadding: EdgeInsets.all(kDefaultPadding),
-            style: TextStyle(
-                color: Palette.kBlack
+            style: kTextFieldStyle,
+            onChanged: (value){
+              phoneOrEmail=value;
+            },
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Palette.kWhite,
+                hintText:"Enter Phone/Email",
+                hintStyle: kHintTextStyle,
+                border:OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    borderSide: BorderSide.none
+                )
             ),
-            decoration: kInputPhoneDecoration,
         ),
       SizedBox(height: 20.0),
       TextField(
-        style: TextStyle(
-              color: Palette.kBlack
-        ),
+        style:kTextFieldStyle,
+        onChanged: (value){
+          password=value;
+        },
         obscureText: _isObscure,
         decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.white,
+            fillColor: Palette.kWhite,
             hintText:"Enter Password",
-            hintStyle: TextStyle(
-              color: Palette.kGrey,
-            ),
+            hintStyle: kHintTextStyle,
             suffixIcon: IconButton(
                 icon: Icon(
                     _isObscure ? Icons.visibility : Icons.visibility_off),
@@ -102,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Expanded(
               child: ElevatedButton(
                 onPressed: (){
-
+                  Navigator.pushNamed(context,'/registerScreen');
                 },
                 style:ElevatedButton.styleFrom(
                   padding: EdgeInsets.all(kDefaultButtonPadding ),
