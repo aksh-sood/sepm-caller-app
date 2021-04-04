@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:to_doc/utilities/pallete.dart';
-import 'package:to_doc/utilities/constants.dart';
+import 'package:to_doc_patient/utilities/pallete.dart';
+import 'package:to_doc_patient/utilities/constants.dart';
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();

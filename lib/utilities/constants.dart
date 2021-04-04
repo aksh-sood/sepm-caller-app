@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_doc/utilities/pallete.dart';
+import 'package:to_doc_patient/utilities/pallete.dart';
 //Padding
 const kDefaultPadding = 20.0;
 const kDefaultButtonPadding = 12.0;

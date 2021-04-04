@@ -1,4 +1,4 @@
-package in.to_doc_patient
+package `in`.to_doc_patient
 
 import io.flutter.embedding.android.FlutterActivity
 
