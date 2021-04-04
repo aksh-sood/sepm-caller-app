@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_doc/utilities/pallete.dart';
 import 'package:to_doc/utilities/constants.dart';
 class LoginScreen extends StatefulWidget {
   @override
@@ -6,8 +7,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
-
+  bool _isObscure = true;
+  String phoneOrEmail;
+  String password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,84 +24,111 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           constraints: BoxConstraints.expand(),
-          child: Container(
-            padding: EdgeInsets.all(kDefaultPadding),
-            alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.all(kDefaultPadding),
             child: Column(
+                mainAxisAlignment:MainAxisAlignment.center,
               children: [
-                SizedBox(height: 120.0),
-                TextField(
-                  scrollPadding: EdgeInsets.all(kDefaultPadding),
-                  style: TextStyle(
-                     color: Colors.black
-                  ),
-                  decoration: kInputPhoneDecoration,
-                ),
-                SizedBox(height: 20.0),
-                TextField(
-                  style: TextStyle(
-                      color: Colors.black
-                  ),
-                  decoration: kInputPasswordDecoration,
-                ),
-                SizedBox(height: 20.0),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                          onPressed: (){
-
-                          },
-                          child:Text(
-                              "Log In",style: kButtonTextStyle,
-                          ),
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.all(kDefaultButtonPadding ),
-                          shape:RoundedRectangleBorder(
-                          borderRadius:BorderRadius.circular(kDefaultBorderRadius),
-                        ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20.0),
-                Row(
-                   children: [
-                     Expanded(
-                       child: ElevatedButton(
-                          onPressed: (){
-
-                          },
-                         style:ElevatedButton.styleFrom(
-                           padding: EdgeInsets.all(kDefaultButtonPadding ),
-                           shape:RoundedRectangleBorder(
-                             borderRadius:BorderRadius.circular(kDefaultBorderRadius) ),
-                         ),
-                         child: Text("Forgot password?",style: kButtonTextStyle,),
-                       ),
-                     ),
-                     SizedBox(width: 10.0),
-                     Expanded(
-                       child: ElevatedButton(
-                         onPressed: (){
-
-                         },
-                         style:ElevatedButton.styleFrom(
-                           padding: EdgeInsets.all(kDefaultButtonPadding ),
-                           shape:RoundedRectangleBorder(
-                             borderRadius:BorderRadius.circular(kDefaultBorderRadius) ),
-                         ),
-                         child: Text("New here? Register", style: kButtonTextStyle,),
-                       ),
-                     )
-                   ],
+            TextField(
+            scrollPadding: EdgeInsets.all(kDefaultPadding),
+            style: kTextFieldStyle,
+            onChanged: (value){
+              phoneOrEmail=value;
+            },
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Palette.kWhite,
+                hintText:"Enter Phone/Email",
+                hintStyle: kHintTextStyle,
+                border:OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    borderSide: BorderSide.none
                 )
-              ],
+            ),
+        ),
+      SizedBox(height: 20.0),
+      TextField(
+        style:kTextFieldStyle,
+        onChanged: (value){
+          password=value;
+        },
+        obscureText: _isObscure,
+        decoration: InputDecoration(
+            filled: true,
+            fillColor: Palette.kWhite,
+            hintText:"Enter Password",
+            hintStyle: kHintTextStyle,
+            suffixIcon: IconButton(
+                icon: Icon(
+                    _isObscure ? Icons.visibility : Icons.visibility_off),
+                onPressed: () {
+                  setState(() {
+                    _isObscure = !_isObscure;
+                  });
+                }),
+            border:OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                borderSide: BorderSide.none
+            )
+        ),
+      ),
+      SizedBox(height: 20.0),
+      Row(
+        children: [
+            Expanded(
+              child: ElevatedButton(
+                onPressed: (){
+
+                },
+                child:Text(
+                  "Log In",style: kButtonTextStyle,
+                ),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(kDefaultButtonPadding ),
+                  shape:RoundedRectangleBorder(
+                    borderRadius:BorderRadius.circular(kDefaultBorderRadius),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+      SizedBox(height: 20.0),
+      Row(
+        children: [
+            Expanded(
+              child: ElevatedButton(
+                onPressed: (){
+
+                },
+                style:ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(kDefaultButtonPadding ),
+                  shape:RoundedRectangleBorder(
+                      borderRadius:BorderRadius.circular(kDefaultBorderRadius) ),
+                ),
+                child: Text("Forgot password?",style: kButtonTextStyle,),
+              ),
+            ),
+            SizedBox(width: 10.0),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: (){
+                  Navigator.pushNamed(context,'/registerScreen');
+                },
+                style:ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(kDefaultButtonPadding ),
+                  shape:RoundedRectangleBorder(
+                      borderRadius:BorderRadius.circular(kDefaultBorderRadius) ),
+                ),
+                child: Text("New here? Register", style: kButtonTextStyle,),
+              ),
+            )
+        ],
+      )
+        ]
             ),
           ),
-        ),
+        )
     );
-
   }
 }
