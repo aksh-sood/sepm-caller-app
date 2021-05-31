@@ -35,7 +35,7 @@ Color shadeColor(Color color, double factor) => Color.fromRGBO(
     1);
 class Palette {
   //Colors
-  static const kPrimaryColor = Color(0xFF0071BC);
+  static const kPrimaryColor = Color(0xFF186DBC);
   static const kSecondaryColor = Color(0xFF2196F3);
   static const kContentColorDarkThemeColor = Color(0xFF1D1D35);
   static const kWhite = Color(0xFFFFFFF4);
