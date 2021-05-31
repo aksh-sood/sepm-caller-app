@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_doc_patient/utilities/pallete.dart';
-//Url
+//Url of server
 final String baseUrl="https://ayushab06-webservices-2406.zeet.app/";
 //Padding
 const kDefaultPadding = 20.0;
