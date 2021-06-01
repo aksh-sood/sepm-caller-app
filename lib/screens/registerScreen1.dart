@@ -6,6 +6,7 @@ import 'package:to_doc_patient/utilities/pallete.dart';
 import 'package:to_doc_patient/models/user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+//edited by aksh
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();

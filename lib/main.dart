@@ -18,9 +18,9 @@ void main() {
     routes: {
       '/': (context) => Splash(),
       '/loginScreen': (context) => LoginScreen(),
-      '/registerScreen1': (context) => RegisterScreen(),
-      '/registerScreen2': (context) => RegisterScreenTwo(),
-      '/registerScreen3': (context) => RegisterScreenThree(),
+      '/registerScreen1': (context) => RegisterScreen(), //added by aksh
+      '/registerScreen2': (context) => RegisterScreenTwo(), //added by aksh
+      '/registerScreen3': (context) => RegisterScreenThree(), //added by aksh
       '/forgotPasswordScreen': (context) => ForgotPassword(),
       '/homeScreen': (context) => HomeScreen(),
     },
