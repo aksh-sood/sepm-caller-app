@@ -116,7 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Expanded(
                               child: ElevatedButton(
                                 child: Text(
-                                  "Register",
+                                  "Enter",
                                   style: kButtonLightTextStyle,
                                 ),
                                 style: ElevatedButton.styleFrom(

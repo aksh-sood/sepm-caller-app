@@ -72,7 +72,7 @@ class _RegisterScreenThreeState extends State<RegisterScreenThree> {
                             Expanded(
                               child: ElevatedButton(
                                 child: Text(
-                                  "Enter",
+                                  "Register",
                                   style: kButtonLightTextStyle,
                                 ),
                                 style: ElevatedButton.styleFrom(
