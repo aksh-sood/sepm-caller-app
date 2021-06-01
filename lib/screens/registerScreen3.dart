@@ -6,18 +6,12 @@ import 'package:to_doc_patient/utilities/pallete.dart';
 import 'package:to_doc_patient/models/user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreenThree extends StatefulWidget {
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  _RegisterScreenThreeState createState() => _RegisterScreenThreeState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-  bool _isObscure = true;
-  String phone = '';
-  String email = '';
-  String password = '';
-  String city = '';
-  String name = '';
+class _RegisterScreenThreeState extends State<RegisterScreenThree> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,51 +65,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        InputTile(
-                            isObscure: false,
-                            inputType: "Enter Name",
-                            variable: name),
-                        SizedBox(height: 20.0),
-                        InputTile(
-                          isObscure: false,
-                          inputType: "Enter Phone No.",
-                          variable: phone,
-                          textLength: [LengthLimitingTextInputFormatter(10)],
-                        ),
-                        SizedBox(height: 20.0),
-                        InputTile(
-                          variable: email,
-                          inputType: "Enter Email ",
-                          isObscure: false,
-                        ),
-                        SizedBox(height: 20.0),
-                        InputTile(
-                          inputType: "Enter Password",
-                          variable: password,
-                          isObscure: _isObscure,
-                          tileIcon: IconButton(
-                              icon: Icon(_isObscure
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
-                              onPressed: () {
-                                setState(() {
-                                  _isObscure = !_isObscure;
-                                });
-                              }),
-                        ),
-                        SizedBox(height: 20.0),
-                        InputTile(
-                          inputType: "Enter City",
-                          variable: city,
-                          isObscure: false,
-                        ),
-                        SizedBox(height: 20.0),
+                        SizedBox(height: 30),
                         Row(
                           children: [
                             Expanded(
                               child: ElevatedButton(
                                 child: Text(
-                                  "Register",
+                                  "Enter",
                                   style: kButtonLightTextStyle,
                                 ),
                                 style: ElevatedButton.styleFrom(
@@ -134,7 +90,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   //     phone: phone,
                                   //     email: email,
                                   //     password: password,
-                                  //     city: city);
+                                  //     city: city
+                                  //     );
                                   // var response = await user.registerUser();
                                   // if (response['success'] == 'no') {
                                   //   msg = response['error'];
@@ -152,8 +109,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   //         Palette.kContentColorDarkThemeColor,
                                   //     textColor: Palette.kWhite,
                                   //     fontSize: 16.0);
-                                  Navigator.pushNamed(
-                                      context, '/registerScreen2');
                                 },
                               ),
                             ),
