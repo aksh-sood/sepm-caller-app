@@ -85,6 +85,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         SizedBox(height: 20.0),
                         InputTile(
+                          inputType: "Enter City",
+                          variable: city,
+                          isObscure: false,
+                        ),
+                        SizedBox(height: 20.0),
+                        InputTile(
                           variable: email,
                           inputType: "Enter Email ",
                           isObscure: false,
@@ -103,12 +109,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   _isObscure = !_isObscure;
                                 });
                               }),
-                        ),
-                        SizedBox(height: 20.0),
-                        InputTile(
-                          inputType: "Enter City",
-                          variable: city,
-                          isObscure: false,
                         ),
                         SizedBox(height: 20.0),
                         Row(
