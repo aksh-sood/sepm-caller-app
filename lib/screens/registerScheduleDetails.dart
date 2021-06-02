@@ -7,12 +7,12 @@ import 'package:to_doc_patient/models/user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 //created by aksh
-class RegisterScreenThree extends StatefulWidget {
+class RegisterSchedule extends StatefulWidget {
   @override
-  _RegisterScreenThreeState createState() => _RegisterScreenThreeState();
+  _RegisterScheduleState createState() => _RegisterScheduleState();
 }
 
-class _RegisterScreenThreeState extends State<RegisterScreenThree> {
+class _RegisterScheduleState extends State<RegisterSchedule> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -5,17 +5,60 @@ import 'package:to_doc_patient/utilities/inputTile.dart';
 import 'package:to_doc_patient/utilities/pallete.dart';
 import 'package:to_doc_patient/models/user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:to_doc_patient/utilities/councils.dart';
 
 //created by aksh
-class RegisterScreenTwo extends StatefulWidget {
+class RegisterSpecialization extends StatefulWidget {
   @override
-  _RegisterScreenTwoState createState() => _RegisterScreenTwoState();
+  _RegisterSpecializationState createState() => _RegisterSpecializationState();
 }
 
-class _RegisterScreenTwoState extends State<RegisterScreenTwo> {
+class _RegisterSpecializationState extends State<RegisterSpecialization> {
   String qualification = "";
-  String licenseId = '';
-  String specification = '';
+  String imrNumber = "";
+  String specialization = "";
+  String medCouncil;
+  String registerYear = "";
+  DateTime date;
+  List<DropdownMenuItem<String>> _medicalCouncils;
+  selectDate() async {
+    DateTime datePicker = await showDatePicker(
+      context: context,
+      initialDate: date,
+      firstDate: DateTime(1945),
+      lastDate: DateTime(DateTime.now().year),
+    );
+    if (datePicker != null) {
+      setState(() {
+        date = datePicker;
+        print(date.toString());
+        registerYear = date.toString();
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _medicalCouncils = buildDropDownMenuItems(medCouncils);
+    medCouncil = _medicalCouncils[0].value;
+    date = DateTime.now();
+  }
+
+  List<DropdownMenuItem<String>> buildDropDownMenuItems(List medCouncils) {
+    List<DropdownMenuItem<String>> items = [];
+    for (String council in medCouncils) {
+      items.add(
+        DropdownMenuItem(
+          value: council,
+          child: Text(council),
+        ),
+      );
+    }
+    return items;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,22 +114,57 @@ class _RegisterScreenTwoState extends State<RegisterScreenTwo> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       InputTile(
                           isObscure: false,
                           inputType: "Enter Qualification",
                           variable: qualification),
-                      SizedBox(height: 30.0),
+                      SizedBox(height: 20.0),
                       InputTile(
                           isObscure: false,
-                          inputType: "Enter Specification",
-                          variable: specification),
-                      SizedBox(height: 30.0),
+                          inputType: "Enter Specialization ",
+                          variable: specialization),
+                      SizedBox(height: 20.0),
+                      // ListTile(
+                      //     trailing: Icon(Icons.calendar_today_rounded),
+                      //     onTap: selectDate(),
+                      //     title: Text(
+                      //         "Registeration Date: ${date.day}/${date.month}/${date.year}")),
+                      //TODO:Fix the calender
+                      Text("Register date"),
+                      SizedBox(height: 20.0),
                       InputTile(
                           isObscure: false,
-                          inputType: 'Enter License No',
-                          variable: licenseId),
-                      SizedBox(height: 30.0),
+                          inputType: "Enter IMR Number",
+                          variable: imrNumber),
+                      SizedBox(height: 20.0),
+                      //TODO:fix dimensions of container
+
+                      Container(
+                        // height:
+                        decoration: BoxDecoration(
+                          color: Palette.kSecondaryColor,
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: DropdownButton(
+                            style: kHintTextStyle,
+                            dropdownColor: Palette.kSecondaryColor,
+                            icon: Icon(Icons.arrow_drop_down_circle_outlined),
+                            items: _medicalCouncils,
+                            value: medCouncil,
+                            onChanged: (value) {
+                              setState(() {
+                                medCouncil = value;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(height: 20.0),
                       Row(
                         children: [
                           Expanded(
