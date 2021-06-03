@@ -103,7 +103,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   return null;
                                 }
                               },
-                              isObscure: false,
                               inputType: "Enter Name",
                               variable: name),
                           SizedBox(height: 20.0),

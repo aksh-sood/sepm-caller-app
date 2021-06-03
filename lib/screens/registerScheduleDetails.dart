@@ -38,9 +38,27 @@ class _RegisterScheduleState extends State<RegisterSchedule> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      "Register",
-                      style: kBigHeadingTextStyle,
+                    Row(
+                      children: [
+                        Text(
+                          "Register",
+                          style: kBigHeadingTextStyle,
+                        ),
+                        ElevatedButton(
+                            child: Text(
+                              "Add Schedule",
+                              style: kButtonLightTextStyle,
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              onSurface: Colors.black,
+                              padding: EdgeInsets.all(kDefaultButtonPadding),
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(kDefaultBorderRadius),
+                              ),
+                            ),
+                            onPressed: null),
+                      ],
                     ),
                     SizedBox(
                       height: 10,

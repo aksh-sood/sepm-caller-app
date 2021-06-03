@@ -6,17 +6,23 @@ import 'package:flutter/services.dart';
 //created by aksh
 class InputTile extends StatelessWidget {
   InputTile(
-      {@required this.isObscure,
+      {this.isObscure = false,
       this.tileIcon,
       @required this.inputType,
       @required this.variable,
       this.textLength,
+      this.tapCall,
       this.keyboard,
-      this.setValidator});
+      this.setValidator,
+      this.seeOnly = false,
+      this.control});
   String variable;
   Function setValidator;
+  Function tapCall;
   final String inputType;
   final bool isObscure;
+  var control;
+  bool seeOnly;
   final TextInputType keyboard;
   final IconButton tileIcon;
   final List<TextInputFormatter> textLength;
@@ -26,10 +32,13 @@ class InputTile extends StatelessWidget {
       keyboardType: keyboard,
       inputFormatters: textLength,
       style: kTextFieldStyle,
+      controller: control,
+      readOnly: seeOnly,
       validator: setValidator,
       onChanged: (value) {
         variable = value;
       },
+      onTap: tapCall,
       obscureText: isObscure,
       decoration: InputDecoration(
         filled: true,
