@@ -1,6 +1,6 @@
 List<String> medCouncils = [
-  "Pick a Medical Council"
-      "Andhra Pradesh Medical Council",
+  "Pick a Medical Council",
+  "Andhra Pradesh Medical Council",
   "Arunachal Pradesh Medical Council",
   "Assam Medical Council",
   "Bhopal Medical Council",
