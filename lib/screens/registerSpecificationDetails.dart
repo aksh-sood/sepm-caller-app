@@ -4,9 +4,9 @@ import 'package:to_doc_patient/utilities/constants.dart';
 import 'package:to_doc_patient/utilities/inputTile.dart';
 import 'package:to_doc_patient/utilities/pallete.dart';
 import 'package:to_doc_patient/models/user.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:to_doc_patient/utilities/councils.dart';
-import 'package:to_doc_patient/utilities/datePicker.dart';
+import 'package:to_doc_patient/utilities/dropDownList.dart';
 
 //created by aksh
 class RegisterSpecialization extends StatefulWidget {
@@ -17,13 +17,12 @@ class RegisterSpecialization extends StatefulWidget {
 class _RegisterSpecializationState extends State<RegisterSpecialization> {
   String qualification = "";
   String imrNumber = "";
-  String specialization = "";
+  String specialization;
   String medCouncil;
   String registerYear = "";
-  String regDate;
   bool correctCouncil = false;
-  final dateController = TextEditingController();
-  List<DropdownMenuItem<String>> _medicalCouncils;
+  DateTime selectedDate = DateTime.now();
+
   void validate() {
     if (formkey.currentState.validate() && correctCouncil) {
       print("validated");
@@ -51,49 +50,65 @@ class _RegisterSpecializationState extends State<RegisterSpecialization> {
   }
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  // selectDate() async {
-  //   DateTime datePicker = await showDatePicker(
-  //     context: context,
-  //     initialDate: date,
-  //     firstDate: DateTime(1945),
-  //     lastDate: DateTime(DateTime.now().year),
-  //   );
-  //   if (datePicker != null) {
-  //     setState(() {
-  //       date = datePicker;
-  //       print(date.toString());
-  //       registerYear = date.toString();
-  //     });
-  //   }
-  // }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _medicalCouncils = buildDropDownMenuItems(medCouncils);
-    medCouncil = _medicalCouncils[0].value;
-    // date = DateTime.now();
-  }
-
-  List<DropdownMenuItem<String>> buildDropDownMenuItems(List medCouncils) {
-    List<DropdownMenuItem<String>> items = [];
-    for (String council in medCouncils) {
-      items.add(
-        DropdownMenuItem(
-          value: council,
-          child: Text(council),
-        ),
-      );
+  _selectDate(BuildContext context) async {
+    final ThemeData theme = Theme.of(context);
+    assert(theme.platform != null);
+    switch (theme.platform) {
+      case TargetPlatform.android:
+      case TargetPlatform.fuchsia:
+      case TargetPlatform.linux:
+      case TargetPlatform.windows:
+        return buildMaterialDatePicker(context);
+      case TargetPlatform.iOS:
+      case TargetPlatform.macOS:
+        return buildCupertinoDatePicker(context);
     }
-    return items;
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    dateController.dispose();
-    super.dispose();
+  /// This builds material date picker in Android
+  buildMaterialDatePicker(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDatePickerMode: DatePickerMode.year,
+      helpText: "Enter Registration Date",
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(selectedDate.year.toInt() + 1),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light(),
+          child: child,
+        );
+      },
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
+
+  /// This builds cupertion date picker in iOS
+  buildCupertinoDatePicker(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext builder) {
+          return Container(
+            height: MediaQuery.of(context).copyWith().size.height / 3,
+            color: Colors.white,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.date,
+              onDateTimeChanged: (picked) {
+                if (picked != null && picked != selectedDate)
+                  setState(() {
+                    selectedDate = picked;
+                  });
+              },
+              initialDateTime: selectedDate,
+              minimumYear: 2000,
+              maximumYear: (selectedDate.year.toInt() + 1),
+            ),
+          );
+        });
   }
 
   @override
@@ -165,42 +180,82 @@ class _RegisterSpecializationState extends State<RegisterSpecialization> {
                             inputType: "Enter Qualification",
                             variable: qualification),
                         SizedBox(height: 20.0),
-                        InputTile(
-                            setValidator: (value) {
-                              if (value.isEmpty) {
-                                return "Required";
-                              } else {
-                                return null;
-                              }
-                            },
-                            inputType: "Enter Specialization ",
-                            variable: specialization),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Palette.kSecondaryColor,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                          ),
+                          width: MediaQuery.of(context).size.width,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              hint: Text(
+                                'Pick a Specialization',
+                                style: kHintTextStyle,
+                              ),
+                              value: specialization,
+                              icon: const Icon(
+                                Icons.arrow_drop_down_circle_outlined,
+                                color: Colors.white,
+                              ),
+                              iconSize: 24,
+                              underline: Container(
+                                color: Colors.transparent,
+                              ),
+                              elevation: 16,
+                              style: kHintTextStyle,
+                              dropdownColor: Palette.kSecondaryColor,
+                              onChanged: (String newValue) {
+                                setState(() {
+                                  specialization = newValue;
+                                });
+                              },
+                              items: specializations
+                                  .map<DropdownMenuItem<String>>(
+                                      (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ),
                         SizedBox(height: 20.0),
-                        // ListTile(
-                        //     trailing: Icon(Icons.calendar_today_rounded),
-                        //     onTap: selectDate(),
-                        //     title: Text(
-                        //         "Registeration Date: ${date.day}/${date.month}/${date.year}")),
-                        //TODO:Fix the calender
-
-                        // DatePicker(
-                        //   inputType: "Enter Registeration Date",
-                        //   tileIcon: IconButton(
-                        //       onPressed: () async {
-                        //         var date = await showDatePicker(
-                        //             context: context,
-                        //             initialDate: DateTime.now(),
-                        //             firstDate: DateTime(190),
-                        //             lastDate: DateTime(DateTime.now().day));
-                        //         dateController.text =
-                        //             date.toString().substring(0, 10);
-                        //         regDate = date.toString().substring(0, 10);
-                        //       },
-                        //       icon: Icon(
-                        //         Icons.calendar_today_rounded,
-                        //       )),
-                        // ),
-                        // DatePicker(),
+                        GestureDetector(
+                            onTap: () => _selectDate(context),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Palette.kSecondaryColor,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+                              ),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(7, 15, 7, 15),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "${selectedDate.toLocal()}"
+                                              .split('-')[2]
+                                              .split(" ")[0] +
+                                          "/" +
+                                          "${selectedDate.toLocal()}"
+                                              .split('-')[1] +
+                                          "/" +
+                                          "${selectedDate.toLocal()}"
+                                              .split('-')[0],
+                                      style: kHintTextStyle,
+                                    ),
+                                    Icon(Icons.calendar_today_rounded,
+                                        color: Palette.kWhite),
+                                  ],
+                                ),
+                              ),
+                            )),
                         SizedBox(height: 20.0),
                         InputTile(
                             setValidator: (value) {
@@ -213,28 +268,41 @@ class _RegisterSpecializationState extends State<RegisterSpecialization> {
                             inputType: "Enter IMR Number",
                             variable: imrNumber),
                         SizedBox(height: 20.0),
-                        //TODO:fix dimensions of container
-
                         Container(
-                          // height:
                           decoration: BoxDecoration(
                             color: Palette.kSecondaryColor,
                             borderRadius: BorderRadius.all(Radius.circular(15)),
                           ),
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.fromLTRB(7, 15, 7, 15),
                             child: DropdownButton(
+                              isExpanded: true,
                               style: kHintTextStyle,
+                              underline: Container(
+                                color: Colors.transparent,
+                              ),
+                              hint: Text(
+                                'Pick a Medical Council',
+                                style: kHintTextStyle,
+                              ),
                               dropdownColor: Palette.kSecondaryColor,
-                              icon: Icon(Icons.arrow_drop_down_circle_outlined),
-                              items: _medicalCouncils,
+                              icon: Icon(
+                                Icons.arrow_drop_down_circle_outlined,
+                                color: Colors.white,
+                              ),
+                              items: medCouncils.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
                               value: medCouncil,
                               onChanged: (value) {
                                 setState(() {
                                   medCouncil = value;
-                                  if (!(medCouncil ==
-                                      _medicalCouncils[0].value)) {
+                                  if (!(medCouncil == null)) {
                                     correctCouncil = true;
                                   }
                                 });
@@ -242,7 +310,6 @@ class _RegisterSpecializationState extends State<RegisterSpecialization> {
                             ),
                           ),
                         ),
-
                         SizedBox(height: 20.0),
                         Row(
                           children: [
@@ -287,7 +354,7 @@ class _RegisterSpecializationState extends State<RegisterSpecialization> {
                                   //         Palette.kContentColorDarkThemeColor,
                                   //     textColor: Palette.kWhite,
                                   //     fontSize: 16.0);
-                                  validate();
+                                  // validate();
                                 },
                               ),
                             ),

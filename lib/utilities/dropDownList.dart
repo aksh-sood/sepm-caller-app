@@ -1,6 +1,5 @@
 //created by aksh
 List<String> medCouncils = [
-  "Pick a Medical Council",
   "Andhra Pradesh Medical Council",
   "Arunachal Pradesh Medical Council",
   "Assam Medical Council",
@@ -41,4 +40,32 @@ List<String> medCouncils = [
   "Uttarakhand Medical Council",
   "Vidharba Medical Council",
   "West Bengal Medical Council",
+];
+List<String> specializations = [
+  "Ophthalmologist",
+  "Dermatologist",
+  "Cardiologist",
+  "Psychiatrist",
+  "Gastroenterologist",
+  "Ear-Nose-Throat (ENT)",
+  "Gynecologist /Obstetrician",
+  "Neurologist",
+  "Urologist",
+  "Dentist",
+  "Prosthodontist",
+  "Orthodontist",
+  "Pediatric",
+  "Endodontist",
+  "Implantologist",
+  "Ayurveda",
+  "Homoeopath",
+  "Siddha",
+  "Unani",
+  "Yoga & Naturopathy",
+  "Acupuncturist",
+  "Physiotherapist",
+  "Psychologist",
+  "Audiologist",
+  "Speech",
+  "Dietitian/Nutritionist"
 ];
