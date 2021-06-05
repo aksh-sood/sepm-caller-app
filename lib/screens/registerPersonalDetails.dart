@@ -4,10 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:to_doc_patient/utilities/constants.dart';
 import 'package:to_doc_patient/utilities/inputTile.dart';
 import 'package:to_doc_patient/utilities/pallete.dart';
+// ignore: unused_import
 import 'package:to_doc_patient/models/user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 //edited by aksh
+enum Genders { none, male, female }
+
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -21,11 +24,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String city = '';
   String name = '';
   Future<bool> validNumber;
-
+  // ignore: unused_field
+  Genders gender;
   void validate() {
     if (formkey.currentState.validate()) {
       print("validated");
       Navigator.pushNamed(context, '/registerScreen2');
+    } else if (gender == 'Male' || gender == "Female") {
+      Fluttertoast.showToast(
+          msg: "Please check the gender",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Palette.kContentColorDarkThemeColor,
+          textColor: Palette.kWhite,
+          fontSize: 16.0);
     } else {
       print("not validated");
       Fluttertoast.showToast(
@@ -87,8 +100,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(kCircularRadius),
                         topRight: Radius.circular(kCircularRadius))),
-                child: SingleChildScrollView(
-                  child: Padding(
+                child: ListView(shrinkWrap: true, children: [
+                  Padding(
                     padding: EdgeInsets.all(kPaddingLevel2),
                     child: Form(
                       key: formkey,
@@ -105,6 +118,186 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               },
                               inputType: "Enter Name",
                               variable: name),
+                          SizedBox(height: 20.0),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Palette.kSecondaryColor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: Text(
+                                      "Select Gender",
+                                      style: kHintTextStyle,
+                                    ),
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            gender = Genders.male;
+                                          });
+                                        },
+                                        child: Container(
+                                          width: (((MediaQuery.of(context)
+                                                      .size
+                                                      .width) /
+                                                  3) -
+                                              10),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15)),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Radio<Genders>(
+                                                value: Genders.male,
+                                                groupValue: gender,
+                                                onChanged: (Genders value) {
+                                                  setState(() {
+                                                    gender = value;
+                                                  });
+                                                },
+                                              ),
+                                              Text("Male"),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      // SizedBox(
+                                      //     width: (MediaQuery.of(context)
+                                      //             .size
+                                      //             .width) /
+                                      //         7),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            gender = Genders.female;
+                                          });
+                                        },
+                                        child: Container(
+                                          width: (((MediaQuery.of(context)
+                                                      .size
+                                                      .width) /
+                                                  3) -
+                                              10),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15)),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Radio<Genders>(
+                                                value: Genders.female,
+                                                groupValue: gender,
+                                                onChanged: (Genders value) {
+                                                  setState(() {
+                                                    gender = value;
+                                                  });
+                                                },
+                                              ),
+                                              Text("Female"),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      // GestureDetector(
+                                      //   onTap: () {
+                                      //     setState(() {
+                                      //       gender = Genders.male;
+                                      //     });
+                                      //   },
+                                      //   child: ListTile(
+                                      //     title: const Text('Male'),
+                                      //     leading: Radio<Genders>(
+                                      //       value: Genders.male,
+                                      //       groupValue: gender,
+                                      //       onChanged: (Genders value) {
+                                      //         setState(() {
+                                      //           gender = value;
+                                      //         });
+                                      //       },
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      // GestureDetector(
+                                      //   onTap: () {
+                                      //     setState(() {
+                                      //       gender = Genders.female;
+                                      //     });
+                                      //   },
+                                      //   child: ListTile(
+                                      //     title: const Text('Female'),
+                                      //     leading: Radio<Genders>(
+                                      //       value: Genders.female,
+                                      //       groupValue: gender,
+                                      //       onChanged: (Genders value) {
+                                      //         setState(() {
+                                      //           gender = value;
+                                      //         });
+                                      //       },
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          // Container(
+                          //   decoration: BoxDecoration(
+                          //     color: Palette.kSecondaryColor,
+                          //     borderRadius:
+                          //         BorderRadius.all(Radius.circular(15)),
+                          //   ),
+                          //   child: Padding(
+                          //     padding:
+                          //         const EdgeInsets.symmetric(horizontal: 100),
+                          //     child: Row(
+                          //       mainAxisAlignment: MainAxisAlignment.start,
+                          //       children: [
+                          //         DropdownButton<String>(
+                          //           value: gender,
+                          //           style: kHintTextStyle,
+                          //           dropdownColor: Palette.kSecondaryColor,
+                          //           icon: const Icon(Icons.arrow_downward),
+                          //           iconSize: 24,
+                          //           elevation: 16,
+                          //           onChanged: (String newValue) {
+                          //             setState(() {
+                          //               gender = newValue;
+                          //             });
+                          //           },
+                          //           hint: Text('Enter Gender',
+                          //               style: kHintTextStyle),
+                          //           items: <String>["Male", "Female"]
+                          //               .map<DropdownMenuItem<String>>(
+                          //                   (String value) {
+                          //             return DropdownMenuItem<String>(
+                          //               value: value,
+                          //               child: Text(value),
+                          //             );
+                          //           }).toList(),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                           SizedBox(height: 20.0),
                           InputTile(
                             keyboard: TextInputType.phone,
@@ -226,7 +419,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                   ),
-                ),
+                ]),
               ))
             ])));
   }
