@@ -1,6 +1,7 @@
-# to-doc-patient
+# calller app
 
-This application can be used to book an appointment from doctor.
+This application can be used call the required companies
+
 
 
 
