@@ -107,30 +107,31 @@ class _LoginScreenState extends State<LoginScreen> {
                             SizedBox(height: 40.0),
                             TextButton(
                               onPressed: () async {
-                                var msg;
-                                User user = User.b(
-                                    phoneOrEmail: phoneOrEmail,
-                                    password: password);
-                                var response = await user.logInUser();
-                                if (response['success'] == 'no') {
-                                  msg = response['error'];
-                                } else {
-                                  msg = response['message'];
-                                  Navigator.pushReplacementNamed(
-                                      context, '/homeScreen');
-                                  SecureStorage().saveUserLoginDetails(
-                                      phoneOrEmail, password);
-                                }
-                                //Fluttertoast.cancel();
-                                Fluttertoast.showToast(
-                                    msg: "$msg",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor:
-                                        Palette.kContentColorDarkThemeColor,
-                                    textColor: Palette.kWhite,
-                                    fontSize: 16.0);
+                                // var msg;
+                                // User user = User.b(
+                                //     phoneOrEmail: phoneOrEmail,
+                                //     password: password);
+                                // var response = await user.logInUser();
+                                // if (response['success'] == 'no') {
+                                //   msg = response['error'];
+                                // } else {
+                                //   msg = response['message'];
+                                //   Navigator.pushReplacementNamed(
+                                //       context, '/homeScreen');
+                                //   SecureStorage().saveUserLoginDetails(
+                                //       phoneOrEmail, password);
+                                // }
+                                // Fluttertoast.showToast(
+                                //     msg: "$msg",
+                                //     toastLength: Toast.LENGTH_SHORT,
+                                //     gravity: ToastGravity.BOTTOM,
+                                //     timeInSecForIosWeb: 1,
+                                //     backgroundColor:
+                                //         Palette.kContentColorDarkThemeColor,
+                                //     textColor: Palette.kWhite,
+                                //     fontSize: 16.0);
+                                Navigator.pushReplacementNamed(
+                                    context, '/homeScreen');
                               },
                               child: Text(
                                 "LogIn",

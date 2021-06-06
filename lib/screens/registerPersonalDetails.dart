@@ -30,7 +30,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void validate() {
     if (formkey.currentState.validate() && gender != Genders.none) {
       print("validated");
-      Navigator.pushNamed(context, '/registerScreen2');
     } else if (gender == Genders.none) {
       print("xyz");
       Fluttertoast.showToast(
@@ -88,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 10,
                     ),
                     Text(
-                      "Welcome to To-Doc",
+                      "Welcome to Cally",
                       style: kNormalHeadingTextStyle,
                     ),
                   ],
@@ -266,8 +265,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (value.isEmpty) {
                                 return "Required";
                               } else if ((!EmailValidator.validate(value))) {
-                                print(
-                                    "\nfaefafaef\n\n\n\n\neefaefsrgfsaefef\n\n\n");
                                 return "Enter a valid email";
                               } else {
                                 return null;
@@ -341,8 +338,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     //     fontSize: 16.0);
 
                                     // validate();
-                                    Navigator.pushNamed(
-                                        context, '/registerScreen2');
+                                    Navigator.pushNamed(context, '/');
                                   },
                                 ),
                               ),
