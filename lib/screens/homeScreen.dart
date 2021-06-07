@@ -54,14 +54,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 20,
                     ),
                     Text(
-                      "Cally",
+                      "Dail In",
                       style: kBigHeadingTextStyle,
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "Welcome to Cally \nCall hospitality in your hands",
+                      "Welcome to Dail In \nCall hospitality in your hands",
                       style: kNormalHeadingTextStyle,
                     ),
                   ],

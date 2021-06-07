@@ -4,6 +4,7 @@ import 'package:to_doc_patient/utilities/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:to_doc_patient/models/user.dart';
 import 'package:to_doc_patient/services/secureStorage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isObscure = true;
   String phoneOrEmail;
   String password;
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,6 +109,30 @@ class _LoginScreenState extends State<LoginScreen> {
                             SizedBox(height: 40.0),
                             TextButton(
                               onPressed: () async {
+                                Navigator.pushReplacementNamed(
+                                    context, '/homeScreen');
+                                final user =
+                                    await _auth.signInWithEmailAndPassword(
+                                        email: phoneOrEmail,
+                                        password: password);
+                                try {
+                                  if (user != null) {
+                                    Navigator.pushReplacementNamed(
+                                        context, '/homeScreen');
+                                  }
+                                } catch (e) {
+                                  print(e);
+                                  Fluttertoast.showToast(
+                                      msg: "Error Logging in",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor:
+                                          Palette.kContentColorDarkThemeColor,
+                                      textColor: Palette.kWhite,
+                                      fontSize: 16.0);
+                                }
+
                                 // var msg;
                                 // User user = User.b(
                                 //     phoneOrEmail: phoneOrEmail,
@@ -130,8 +156,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 //         Palette.kContentColorDarkThemeColor,
                                 //     textColor: Palette.kWhite,
                                 //     fontSize: 16.0);
-                                Navigator.pushReplacementNamed(
-                                    context, '/homeScreen');
                               },
                               child: Text(
                                 "LogIn",

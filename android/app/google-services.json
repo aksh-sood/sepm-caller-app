@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "667338697776",
+    "project_id": "caller-19795",
+    "storage_bucket": "caller-19795.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667338697776:android:af98b5f96fa30d7a9611f5",
+        "android_client_info": {
+          "package_name": "in.companyaksh.Cally"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667338697776-m4st90bvi45lnno0eo27nu8940kuj7kc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdCIRLMKKb83HlUt16XTu0W56hlvbBN1A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667338697776-m4st90bvi45lnno0eo27nu8940kuj7kc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

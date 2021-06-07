@@ -87,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 10,
                     ),
                     Text(
-                      "Welcome to Cally",
+                      "Welcome to Dail In",
                       style: kNormalHeadingTextStyle,
                     ),
                   ],
